@@ -1,1 +1,129 @@
-{"see":"_placeholder"}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新能源期货仓单日报 · 2026-09-23</title>
+<style>
+  :root{
+    --bg:#f5f3ec; --panel:#fdfcf7; --ink:#211d19; --ink2:#6e675c; --ink3:#9a917f;
+    --line:#ddd6c4; --accent:#c2402a; --green:#256b4a; --amber:#b45309;
+    --mono:'JetBrains Mono','SF Mono',ui-monospace,Consolas,'PingFang SC','Microsoft YaHei',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:13px;
+       -webkit-font-smoothing:antialiased;padding:28px 32px 20px}
+  .wrap{max-width:1320px;margin:0 auto}
+  header{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px;border-bottom:1px solid var(--ink);padding-bottom:14px}
+  h1{font-size:24px;font-weight:700;letter-spacing:.06em}
+  h1 small{font-size:12px;font-weight:400;color:var(--ink2);letter-spacing:.14em;display:block;margin-top:4px}
+  .date{margin-left:auto;text-align:right}
+  .date .d{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+  .date .s{font-size:10px;color:var(--ink3);letter-spacing:.16em;text-transform:uppercase}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);
+         border:1px solid var(--line);margin:14px 0 6px}
+  .stat{background:var(--panel);padding:10px 14px}
+  .stat .k{font-size:10px;letter-spacing:.16em;color:var(--ink3);text-transform:uppercase}
+  .stat .v{font-size:20px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+  .stat .s{font-size:10px;color:var(--ink2);margin-top:2px}
+  .up{color:var(--accent)} .dn{color:var(--green)}
+  .grp{margin-top:26px}
+  .grp h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);
+          border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px;font-weight:600}
+  .grp h2 span{color:var(--ink3);font-weight:400;letter-spacing:.06em;text-transform:none;font-size:11px;margin-left:10px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:10px}
+  .card{display:block;background:var(--panel);border:1px solid var(--line);padding:12px 14px 10px;
+        text-decoration:none;color:var(--ink);transition:border-color .15s ease}
+  .card:hover{border-color:var(--ink)}
+  .card .top{display:flex;align-items:baseline;gap:8px}
+  .card .nm{font-size:14px;font-weight:700}
+  .card .cd{font-size:10px;color:var(--ink3);letter-spacing:.1em}
+  .card .ex{margin-left:auto;font-size:9px;color:var(--ink3);letter-spacing:.08em}
+  .badges{display:flex;gap:6px;margin-top:5px;min-height:16px}
+  .badge{font-size:9px;letter-spacing:.08em;padding:1px 7px;border:1px solid}
+  .badge.amber{color:var(--amber);border-color:var(--amber)}
+  .badge.grey{color:var(--ink3);border-color:var(--line)}
+  .card .qty{font-size:22px;font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums}
+  .card .qty small{font-size:10px;font-weight:400;color:var(--ink3);margin-left:4px}
+  .card .chg{font-size:16px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+  .card .chg .pct{font-size:11px;font-weight:400;margin-left:8px;opacity:.8}
+  .card .flat{color:var(--ink3)}
+  .spark{margin-top:8px;display:block}
+  .spark polyline{fill:none;stroke:#8f8776;stroke-width:1.2}
+  .spark .end{stroke:none}
+  .card .sl{font-size:9px;color:var(--ink3);letter-spacing:.1em;margin-top:2px}
+  footer{margin-top:26px;border-top:1px solid var(--line);padding-top:12px;font-size:10.5px;
+         color:var(--ink2);line-height:1.9;letter-spacing:.03em}
+  footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>新能源期货仓单日报<small>NEW ENERGY FUTURES WAREHOUSE RECEIPTS DAILY · 广期所 3 品种</small></h1>
+    <div class="date"><div class="d">2026-09-23</div><div class="s">数据日期 · 点击品种查看季节性</div></div>
+  </header>
+  <div class="stats" id="stats"></div>
+  <div id="groups"></div>
+  <footer>
+    <b>数据口径：</b>广州期货交易所仓单日报直采（交易所官网接口逐日解析，取每品种「小计」行口径，整数原始值）；
+    历史自各品种首个有仓单交易日起：工业硅 2023-06 · 碳酸锂 2023-12 · 多晶硅 2025-04（品种上市晚，无更早仓单）。<br>
+    <b>单位说明：</b>广期所仓单以「张」计，1 张 = 1 手（碳酸锂 1 吨/手 · 工业硅 5 吨/手 · 多晶硅 3 吨/手）。
+    <b>颜色约定：</b><span class="up">朱红 = 增加</span>，<span class="dn">墨绿 = 减少（注销）</span>；「注销月」徽章表示当月处于该品种规则注销窗口；「仓单为零」表示当前无有效仓单。<br>
+    <b>注销规则速览：</b>碳酸锂 3 / 7 / 11 月末 · 工业硅 11 月末 · 多晶硅 5 / 11 月末（均为当月最后一个交易日，闭市后统一注销）。
+  </footer>
+</div>
+<script>
+const DAILY = [{"code": "LC", "name": "碳酸锂", "exch": "广期所", "unit": "张", "group": "新能源金属（广期所）", "qty": 34335, "chg": -1523, "pct": -4.25, "zero": false, "cancelThisMonth": false, "short": "每年3、7、11月最后一个交易日前全部注销", "spark": [48578, 48206, 46708, 46085, 43640, 44020, 42067, 42406, 42903, 42420, 41231, 40345, 41359, 41023, 40865, 40334, 39879, 38418, 38278, 39315, 38981, 25042, 26552, 27653, 28123, 28453, 29873, 31621, 32551, 35101, 35508, 36098, 36689, 37369, 38608, 39333, 39604, 41290, 41940, 43100, 43390, 44024, 45624, 45839, 45389, 46898, 47198, 47988, 49423, 49797, 49264, 48714, 48814, 47164, 45515, 43583, 41105, 38305, 35858, 34335]}, {"code": "SI", "name": "工业硅", "exch": "广期所", "unit": "张", "group": "新能源金属（广期所）", "qty": 33250, "chg": -7, "pct": -0.02, "zero": false, "cancelThisMonth": false, "short": "每年11月最后一个交易日前全部注销", "spark": [31776, 31709, 31745, 31793, 31886, 32018, 32025, 31921, 32207, 32207, 32207, 32097, 32243, 32448, 32406, 32406, 32406, 32406, 32334, 32308, 32302, 32286, 32286, 32253, 32763, 33123, 33103, 33103, 33103, 33103, 33103, 33223, 33223, 33223, 33511, 33535, 33535, 33535, 33535, 33535, 33559, 33559, 33559, 33559, 33518, 33518, 33494, 33494, 33494, 33494, 33482, 33447, 33440, 33440, 33440, 33420, 33372, 33351, 33257, 33250]}, {"code": "PS", "name": "多晶硅", "exch": "广期所", "unit": "张", "group": "新能源金属（广期所）", "qty": 25600, "chg": 80, "pct": 0.31, "zero": false, "cancelThisMonth": false, "short": "每年5、11月最后一个交易日闭市后统一注销", "spark": [15750, 16840, 16880, 16880, 16880, 17150, 17270, 17400, 17400, 17860, 17900, 18260, 18480, 18720, 18730, 18820, 19330, 19380, 20250, 20250, 20440, 20790, 21120, 21180, 21250, 21390, 21470, 21660, 21900, 21930, 22020, 22240, 22310, 22310, 22580, 22830, 22830, 23180, 23250, 23240, 23280, 23790, 23940, 23940, 24050, 24330, 24330, 24270, 24300, 24200, 24310, 24320, 24770, 24850, 24880, 25090, 25120, 25510, 25520, 25600]}];
+const GROUPS = ["新能源金属（广期所）"];
+function fmt(n){ return n.toLocaleString('en-US'); }
+function fmtC(n){ return (n>0?'+':'') + n.toLocaleString('en-US'); }
+
+const inc = DAILY.filter(d=>d.chg>0), dec = DAILY.filter(d=>d.chg<0), flat = DAILY.filter(d=>d.chg===0);
+const zeros = DAILY.filter(d=>d.zero);
+const byAbs = [...DAILY].sort((a,b)=>Math.abs(b.chg)-Math.abs(a.chg));
+const mxInc = byAbs.find(d=>d.chg>0), mxDec = byAbs.find(d=>d.chg<0);
+
+document.getElementById('stats').innerHTML =
+  st('覆盖品种', DAILY.length+' 个', '广期所 · 碳酸锂 / 工业硅 / 多晶硅')+
+  st('日内增加', `<span class="up">${inc.length}</span> 个`, mxInc?('最大 '+mxInc.name+' '+fmtC(mxInc.chg)+' '+mxInc.unit):'')+
+  st('日内减少', `<span class="dn">${dec.length}</span> 个`, mxDec?('最大 '+mxDec.name+' '+fmtC(mxDec.chg)+' '+mxDec.unit):'')+
+  st('日内持平', flat.length+' 个', '含仓单持续为零品种')+
+  st('仓单为零', zeros.length+' 个', zeros.map(d=>d.code).join(' / ')||'—');
+function st(k,v,s){ return `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`; }
+
+function spark(pts, up){
+  const w=206,h=30,p=2;
+  const mn=Math.min(...pts), mx=Math.max(...pts), rg=(mx-mn)||1;
+  const xy=pts.map((v,i)=>[p+i*(w-2*p)/(pts.length-1), h-p-(v-mn)/rg*(h-2*p)]);
+  const line=xy.map(p2=>p2[0].toFixed(1)+','+p2[1].toFixed(1)).join(' ');
+  const e=xy[xy.length-1];
+  const col= up===true?'#c2402a':(up===false?'#256b4a':'#8f8776');
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" width="100%" height="${h}">`+
+         `<polyline points="${line}"/>`+
+         `<circle class="end" cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="2.6" fill="${col}"/></svg>`;
+}
+
+document.getElementById('groups').innerHTML = GROUPS.map(g=>{
+  const items = DAILY.filter(d=>d.group===g).sort((a,b)=>Math.abs(b.chg)-Math.abs(a.chg));
+  if(!items.length) return '';
+  const cards = items.map(d=>{
+    const cls = d.chg>0?'up':(d.chg<0?'dn':'flat');
+    const pct = d.pct==null?'':`<span class="pct">${d.pct>0?'+':''}${d.pct}%</span>`;
+    const badges =
+      (d.cancelThisMonth?'<span class="badge amber">注销月</span>':'')+
+      (d.zero?'<span class="badge grey">仓单为零</span>':'');
+    return `<a class="card" href="${d.code}.html">
+      <div class="top"><span class="nm">${d.name}</span><span class="cd">${d.code}</span><span class="ex">${d.exch}</span></div>
+      <div class="badges">${badges}</div>
+      <div class="qty">${fmt(d.qty)}<small>${d.unit}</small></div>
+      <div class="chg ${cls}">${d.chg===0?'0':fmtC(d.chg)}${pct}</div>
+      ${spark(d.spark, d.chg>0?true:(d.chg<0?false:null))}
+      <div class="sl">近60个交易日仓单走势</div>
+    </a>`;
+  }).join('');
+  return `<div class="grp"><h2>${g}<span>${items.length} 个品种 · 按日内变动幅度排序</span></h2><div class="cards">${cards}</div></div>`;
+}).join('');
+</script>
+</body>
+</html>
